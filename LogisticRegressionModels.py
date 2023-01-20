@@ -1,9 +1,7 @@
 
 import Pipeline
 from sklearn.linear_model import LogisticRegression
-import numpy as np
-import matplotlib.pyplot as plt
-import sklearn
+
 
 class LogisticRegressionModels():
     def __init__(self):
