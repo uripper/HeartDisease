@@ -30,48 +30,48 @@ class Pipeline():
             weighted_avg = data["weighted avg"]
             current_color = random.choice(self.colors)
             print(current_color)
-            
+
             # Precision
-            
+
             plot = plt.figure()
             plt.bar(['Not Heart Disease', 'Heart Disease', 'Macro Avg', 'Weighted Average'], [not_heart_disease["precision"], heart_disease["precision"], macro_avg["precision"], weighted_avg["precision"]], color=current_color)
             plt.title('Precision')
             minimum = min([not_heart_disease["precision"], heart_disease["precision"], macro_avg["precision"], weighted_avg["precision"]])
             maximum = max([not_heart_disease["precision"], heart_disease["precision"], macro_avg["precision"], weighted_avg["precision"]])
-            if maximum  + .1 > 1:
+            if maximum > 1 - 0.1:
                 plt.ylim(minimum-.1, 1)
             else:
                 plt.ylim(minimum-.1, maximum+.1)
             plt.savefig(f'Graphs/{directory}//Precision.png')
             plt.close()
-            
+
             # Recall
-            
+
             plot = plt.figure()
             plt.bar(['Not Heart Disease', 'Heart Disease', 'Macro Avg', 'Weighted Average'], [not_heart_disease["recall"], heart_disease["recall"], macro_avg["recall"], weighted_avg["recall"]], color=current_color)
             plt.title('Recall')
             minimum = min([not_heart_disease["recall"], heart_disease["recall"], macro_avg["recall"], weighted_avg["recall"]])
             maximum = max([not_heart_disease["recall"], heart_disease["recall"], macro_avg["recall"], weighted_avg["recall"]])
-            if maximum  + .1 > 1:
+            if maximum > 1 - 0.1:
                 plt.ylim(minimum-.1, 1)
             else:
                 plt.ylim(minimum-.1, maximum+.1)
             plt.savefig(f'Graphs/{directory}//Recall.png')
             plt.close()
-            
+
             # F1 Score
             plot = plt.figure()
             plt.bar(['Not Heart Disease', 'Heart Disease', 'Macro Avg', 'Weighted Average'], [not_heart_disease["f1-score"], heart_disease["f1-score"], macro_avg["f1-score"], weighted_avg["f1-score"]], color=current_color)
             plt.title('F1 Score')
             minimum = min([not_heart_disease["f1-score"], heart_disease["f1-score"], macro_avg["f1-score"], weighted_avg["f1-score"]])
             maximum = max([not_heart_disease["f1-score"], heart_disease["f1-score"], macro_avg["f1-score"], weighted_avg["f1-score"]])
-            if maximum  + .1 > 1:
+            if maximum > 1 - 0.1:
                 plt.ylim(minimum-.1, 1)
             else:
                 plt.ylim(minimum-.1, maximum+.1)
             plt.savefig(f'Graphs/{directory}//F1Score.png')
             plt.close()
-            
+
             # Support
             plot = plt.figure()
             plt.bar(['Not Heart Disease', 'Heart Disease'], [not_heart_disease["support"], heart_disease["support"]], color=current_color)
@@ -127,26 +127,19 @@ class Pipeline():
         return working_accuracy, working_cm_score, working_cr_score, working_roc_curve_score, working_roc_auc, working_precision_recall_curve_score
     
     def accuracy(self, y_test, y_pred):
-        working_accuracy = accuracy_score(y_test, y_pred)
-        return working_accuracy
+        return accuracy_score(y_test, y_pred)
     def auc_score(self, y_test, y_pred):
-        working_auc = auc(y_test, y_pred)
-        return working_auc
+        return auc(y_test, y_pred)
     def confusion_matrix_score(self, y_test, y_pred):
-        working_cm_score = confusion_matrix(y_test, y_pred)
-        return working_cm_score
+        return confusion_matrix(y_test, y_pred)
     def classification_report_score(self, y_test, y_pred):
-        working_cr_score = classification_report(y_test, y_pred, output_dict=True)
-        return working_cr_score
+        return classification_report(y_test, y_pred, output_dict=True)
     def roc_curve_score(self, y_test, y_pred):
-        working_roc_curve_score = roc_curve(y_test, y_pred)
-        return working_roc_curve_score
+        return roc_curve(y_test, y_pred)
     def roc_auc(self, y_test, y_pred):
-        working_roc_auc = roc_auc_score(y_test, y_pred)
-        return working_roc_auc
+        return roc_auc_score(y_test, y_pred)
     def precision_recall_curve_score(self, y_test, y_pred):
-        working_precision_recall_curve_score = precision_recall_curve(y_test, y_pred)
-        return working_precision_recall_curve_score
+        return precision_recall_curve(y_test, y_pred)
     def train_test_split(self, dataset=None):
         if dataset is None:
             dataset = self.dataset_in_memory

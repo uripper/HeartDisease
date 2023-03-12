@@ -21,17 +21,15 @@ all_precisions = []
 all_recalls = []
 for dictionary in cr_all:
     for key, value in dictionary.items():
-        if key != "macro avg":
-            pass
-        else:
+        if key == "macro avg":
             for new_key, new_value in value.items():
                 if new_key == "precision":
                     all_precisions.append(new_value)
                 elif new_key == "recall":
                     all_recalls.append(new_value)
-                
-                
-    
+
+
+
 # Plotting accuracy of all the models
 plot = plt.figure()
 fig, ax = plt.subplots()
